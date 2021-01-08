@@ -1,4 +1,4 @@
-# 初级小白的一个ThinkPhp权限系统
+# 初级小白的ThinkPhp权限系统
 ## 基于thinkphp+nginx+mysql+layui（框架）开发
 ### 使用前需要配置的信息
 - Sql数据导入（AuthDome.sql）
