@@ -6,4 +6,4 @@
 - 配置nginx配置伪静态
 - 配置访问目录（public/）
 
-### 访问地址: http://localhost/index.php
+### 访问地址: http://localhost/index.php (用户名/密码：admin/123)
