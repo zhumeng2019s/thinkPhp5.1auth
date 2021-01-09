@@ -36,7 +36,6 @@
                 <i class="layui-icon x-show" status='true'>&#xe623;</i>
                 {$vo.title}
             </td>
-            <!--            <td><input type="text" class="layui-input x-sort" name="order" value="1"></td>-->
             <td>
                 {if $vo.status == 0}
                 <input type="checkbox" name="openKG" lay-skin="switch" lay-filter="switchTest"
@@ -52,7 +51,7 @@
                         class="layui-icon">&#xe642;</i>编辑
                 </button>
                 <button class="layui-btn layui-btn-warm layui-btn-xs"
-                        onclick="xadmin.open('添加','{:url(\'AuthRule/ruleAdd\')}?id={$vo.id}')"><i
+                        onclick="xadmin.open('添加','{:url(\'AuthRule/levelAdd\')}?id={$vo.id}')"><i
                         class="layui-icon">&#xe642;</i>添加子栏目
                 </button>
                 <button class="layui-btn-danger layui-btn layui-btn-xs" onclick="member_del(this,'{$vo.id}')"
@@ -70,7 +69,6 @@
                 <i class="layui-icon x-show" status='true'>&#xe623;</i>
                 {$vo1.title}
             </td>
-            <!--                    <td><input type="text" class="layui-input x-sort" name="order" value="1"></td>-->
             <td>
                 {if $vo1.status == 0}
                 <input type="checkbox" name="openKG" lay-skin="switch" lay-filter="switchTest"
@@ -86,7 +84,7 @@
                         class="layui-icon">&#xe642;</i>编辑
                 </button>
                 <button class="layui-btn layui-btn-warm layui-btn-xs"
-                        onclick="xadmin.open('添加','{:url(\'AuthRule/ruleAdd\')}?id={$vo1.id}')"><i
+                        onclick="xadmin.open('添加','{:url(\'AuthRule/levelAdd\')}?id={$vo1.id}')"><i
                         class="layui-icon">&#xe642;</i>添加子栏目
                 </button>
                 <button class="layui-btn-danger layui-btn layui-btn-xs" onclick="member_del(this,'{$vo1.id}')"
@@ -103,7 +101,6 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 ├{$vo2.title}
             </td>
-            <!--                                <td><input type="text" class="layui-input x-sort" name="order" value="1"></td>-->
             <td>
                 {if $vo2.status == 0}
                 <input type="checkbox" name="openKG" lay-skin="switch" lay-filter="switchTest"

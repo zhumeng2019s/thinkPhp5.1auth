@@ -3,6 +3,7 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form">
+            <input type="hidden" name="pid" value="{$level.id}">
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
                     <span class="x-red">*</span>名称
@@ -21,19 +22,18 @@
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label">
-                    <span class="x-red">*</span>图标
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="L_pass" name="ico" required="" lay-verify="pass"
-                           autocomplete="off" class="layui-input">
+            <div class="layui-form-item" style="width: 300px">
+                <label class="layui-form-label">父级</label>
+                <div class="layui-input-block">
+                    <select name="fid" lay-filter="aihao">
+                        <option value="{$level.fid}" name="fid">{$level.title}</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否显示</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" name="status" lay-skin="switch" lay-filter="switchTest"
+                    <input type="checkbox" name="open" lay-skin="switch" lay-filter="switchTest"
                            lay-text="ON|OFF">
                 </div>
             </div>
@@ -57,14 +57,12 @@
             //监听提交
             form.on('submit(add)',
                 function (data) {
-                    // console.log(data.field);
                     $.ajax({
-                        url: "{:url('admin/AuthRule/ruleAdd')}",
+                        url: "{:url('admin/AuthRule/levelAdd')}",
                         type: "post",
                         data: data.field,
                         dataType: 'json',
                         success: function (res) {
-                            // console.log(res);
                             if (res.code == 1) {
                                 layer.msg(res.msg, {
                                     icon: 6,
@@ -88,9 +86,5 @@
                 });
 
         });
-
-    function xuanzhong() {
-        alert(1);
-    }
 </script>
 {/block}
