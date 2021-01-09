@@ -38,12 +38,11 @@ class AuthRule extends Common
         $listFid = Db::table('think_auth_rule')->find($id);
         if ((request()->isPost())) {
             $data = $this->request->param();
-            if($data['fid']){
+            if ($data['fid']) {
                 $data['fid'] = 2;
-            }else{
+            } else {
                 $data['fid'] = 1;
             }
-//            return $data;
             $modelAuthRule = new ModelAuthRule();
             $resMdelo = $modelAuthRule->ruleAdd($data);
             if ($resMdelo == 1) {
@@ -59,12 +58,30 @@ class AuthRule extends Common
     //删除
     public function ruleDel($id)
     {
-        $res = Db::table('think_auth_rule')->where('id', $id)->delete();
-        if ($res) {
-            $this->success('删除成功');
+        $resnull = Db::table('think_auth_rule')->where('id', $id)->find();
+        if ($resnull['fid'] == 2) {
+            $res = Db::table('think_auth_rule')->where('id', $id)->delete();
+            if ($res) {
+                $this->delAuthRul($id);
+                $this->success('删除成功');
+            } else {
+                $this->error('删除失败');
+            }
         } else {
-            $this->error('删除失败');
+            $resnull = Db::table('think_auth_rule')->where('pid', $id)->find();
+            if (!$resnull) {
+                $res = Db::table('think_auth_rule')->where('id', $id)->delete();
+                if ($res) {
+                    $this->delAuthRul($id);
+                    $this->success('删除成功');
+                } else {
+                    $this->error('删除失败');
+                }
+            }
+            $this->error('有成员！无法删除');
         }
+
+
     }
 
     //更新
@@ -74,9 +91,28 @@ class AuthRule extends Common
             'id' => $id,
             'status' => input('status')
         ];
-//        return $data;
         $modelAuthRule = new ModelAuthRule();
         $resMdelo = $modelAuthRule->ruleUpdata($data);
         return $resMdelo;
+    }
+
+    public function delAuthRul($id)
+    {
+        $gropu = new \app\admin\model\AuthGroup();
+        $resgroup = Db::table('think_auth_group')->select();
+        $dararules = [];
+        foreach ($resgroup as $a => $v) {
+            $rulesarr = ['id' => $v['id'], 'title' => $v['title'], 'rules' => $v['rules'], 'del' => '1'];
+            $rulesrt = explode(",", $rulesarr['rules']);
+            if (in_array($id, $rulesrt)) {
+                foreach ($rulesrt as $key => $value) {
+                    if ($value === $id)
+                        unset($rulesrt[$key]);
+                }
+                $rulesarr['rules'] = implode(',', $rulesrt);
+                array_push($dararules, $rulesarr);
+            }
+        }
+        $gropu->groupEdit($dararules);
     }
 }

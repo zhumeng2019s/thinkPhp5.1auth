@@ -43,7 +43,7 @@
                                        lay-filter="switchTest"
                                        lay-text="ON|OFF" value="{$obj.id}">
                             </td>
-                                {else/}
+                            {else/}
                             <td class="td-status">
                                 <input type="checkbox" checked="" name="openKG" lay-skin="switch"
                                        lay-filter="switchTest"
@@ -92,7 +92,6 @@
                     type: 'post',
                     data: {id: data.value, status: '1'},
                     success: function (res) {
-                        // console.log(res);
                         if (res.code == 0) {
                             layer.msg(res.msg);
                             return false
@@ -101,7 +100,6 @@
                     }
                 });
             } else {
-                // alert(1) //关闭
                 $.ajax({
                     url: "{:url('admin/admin/Status')}",
                     type: 'post',
@@ -119,6 +117,7 @@
 
         });
     });
+
     // /*用户-编辑*/
     function member_edit(id) {
         // console.log(id);
@@ -141,6 +140,7 @@
             }
         })
     }
+
     // /*用户-删除*/
     function member_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
@@ -171,11 +171,4 @@
     }
 
 </script>
-<script>var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();</script>
 {/block}

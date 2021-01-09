@@ -26,8 +26,10 @@ class AuthGroup extends Common
                 'title' => input('title'),
                 'rules' => implode(",", $manage)
             ];
+            array($data);
             $modelGroupo = new ModelAuthGroup();
             $res = $modelGroupo->groupEdit($data);
+            return  $res;
             if ($res == 1) {
                 $this->success('修改成功');
             } else {

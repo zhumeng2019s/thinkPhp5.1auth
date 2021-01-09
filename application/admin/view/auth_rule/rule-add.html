@@ -5,11 +5,14 @@
         <form class="layui-form">
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>名称
+                    <span class="x-red"></span>名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="username" name="title" required="" lay-verify="required"
+                    <input type="text" id="username" name="title"
                            autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>可以为空
                 </div>
             </div>
             <div class="layui-form-item">
@@ -17,7 +20,7 @@
                     <span class="x-red">*</span>控制器
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="L_pass" name="name" required="" lay-verify="pass"
+                    <input type="text" id="L_pass" name="name" required="" lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
@@ -26,8 +29,11 @@
                     <span class="x-red">*</span>图标
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="L_pass" name="ico" required="" lay-verify="pass"
-                           autocomplete="off" class="layui-input">
+                    <input type="text" id="L_pass" name="ico"
+                           autocomplete="off" class="layui-input" placeholder="例如：layui-icon-heart-fill">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span> <a href="https://www.layui.com/doc/element/icon.html" target="_blank">图标链接</a>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -57,7 +63,6 @@
             //监听提交
             form.on('submit(add)',
                 function (data) {
-                    // console.log(data.field);
                     $.ajax({
                         url: "{:url('admin/AuthRule/ruleAdd')}",
                         type: "post",
@@ -88,9 +93,5 @@
                 });
 
         });
-
-    function xuanzhong() {
-        alert(1);
-    }
 </script>
 {/block}
